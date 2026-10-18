@@ -1,10 +1,9 @@
 // Jenkinsfile untuk agent Windows (Jenkins di Windows + Docker Desktop)
-// Ganti IMAGE_NAME dengan username Docker Hub Anda.
 pipeline {
   agent any
 
   environment {
-    IMAGE_NAME           = 'youruser/simple-notes-app'
+    IMAGE_NAME           = 'khaila766/simple-notes-app'
     REGISTRY_CREDENTIALS = 'dockerhub-credentials'
   }
 
@@ -29,7 +28,6 @@ pipeline {
           docker compose down
           docker compose up -d
         '''
-        // tunggu aplikasi & MySQL siap, lalu cek koneksi database lewat /health
         powershell '''
           $ok = $false
           for ($i = 0; $i -lt 30; $i++) {
